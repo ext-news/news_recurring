@@ -1,0 +1,16 @@
+# ==============================================
+# Persistence object mapping configuration
+# ==============================================
+config.tx_extbase.persistence.classes {
+	GeorgRinger\News\Domain\Model\News {
+		subclasses {
+			7 = GeorgRinger\NewsRecurring\Domain\Model\News
+		}
+	}
+	GeorgRinger\NewsRecurring\Domain\Model\News {
+		mapping {
+			recordType = 7
+			tableName = tx_news_domain_model_news
+		}
+	}
+}
