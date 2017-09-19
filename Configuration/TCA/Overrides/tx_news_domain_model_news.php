@@ -1,6 +1,6 @@
 <?php
 if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
 
 $columns = [
@@ -17,7 +17,7 @@ $columns = [
         ]
     ],
     'recurring' => [
-        'exclude' => TRUE,
+        'exclude' => true,
         'l10n_mode' => 'mergeIfNotBlank',
         'label' => 'LLL:EXT:news_recurring/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news.recurring',
         'config' => [
@@ -42,7 +42,7 @@ $columns = [
                 'showAllLocalizationLink' => 1,
                 'showSynchronizationLink' => 1,
                 'enabledControls' => [
-                    'info' => FALSE,
+                    'info' => false,
                 ]
             ]
         ]

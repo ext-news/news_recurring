@@ -2,8 +2,8 @@
 
 namespace GeorgRinger\NewsRecurring\Domain\Model;
 
-
-class News extends \GeorgRinger\News\Domain\Model\News {
+class News extends \GeorgRinger\News\Domain\Model\News
+{
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
@@ -67,5 +67,4 @@ class News extends \GeorgRinger\News\Domain\Model\News {
     {
         $this->recurringOriginal = $recurringOriginal;
     }
-
 }
