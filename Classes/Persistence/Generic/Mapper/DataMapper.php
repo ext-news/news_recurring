@@ -10,7 +10,6 @@ namespace GeorgRinger\NewsRecurring\Persistence\Generic\Mapper;
  */
 use GeorgRinger\NewsRecurring\Domain\Model\News;
 
-
 /**
  * Class DataMapper
  */
@@ -22,7 +21,7 @@ class DataMapper extends \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMappe
      *
      * @var array
      */
-    protected $overlaidFields = array('type', 'datetime', 'recurring_parent');
+    protected $overlaidFields = ['type', 'datetime', 'recurring_parent'];
 
     /**
      * Maps a single row on an object of the given class
@@ -77,5 +76,4 @@ class DataMapper extends \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMappe
     {
         return $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . (int)$uid);
     }
-
 }
