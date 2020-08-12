@@ -26,8 +26,14 @@ $columns = [
             'foreign_table' => 'tx_news_domain_model_news',
             'foreign_sortby' => 'sorting',
             'foreign_field' => 'recurring_parent',
-            'foreign_record_defaults' => [
-                'type' => 7
+            'overrideChildTca' => [
+                'columns' => [
+                    'type' => [
+                        'config' => [
+                            'default' => 7,
+                        ],
+                    ],
+                ],
             ],
             'size' => 5,
             'minitems' => 0,

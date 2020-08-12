@@ -7,16 +7,15 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Georg Ringer',
     'author_email' => 'mail@ringer.it',
     'state' => 'alpha',
-    'clearCacheOnLoad' => 1,
-    'version' => '2.0.0',
+    'clearCacheOnLoad' => true,
+    'version' => '3.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-8.7.999',
-            'news' => '6.0.0-7.9.99',
+            'typo3' => '10.4.0-10.4.99',
+            'news' => '8.0.0-8.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],
     ],
-    '_md5_values_when_last_written' => '',
     'suggests' => [],
 ];

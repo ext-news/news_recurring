@@ -7,18 +7,17 @@ class News extends \GeorgRinger\News\Domain\Model\News
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     * @lazy
      */
     protected $recurring;
 
     /**
      * @var \GeorgRinger\News\Domain\Model\News
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $recurringParent;
 
     /** @var int */
-    protected $recurringOriginal;
+    protected $recurringOriginal = 0;
 
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
@@ -37,7 +36,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * @return Tx_News_Domain_Model_News
+     * @return \GeorgRinger\News\Domain\Model\News
      */
     public function getRecurringParent()
     {
@@ -45,7 +44,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * @param Tx_News_Domain_Model_News $recurringParent
+     * @param \GeorgRinger\News\Domain\Model\News $recurringParent
      */
     public function setRecurringParent($recurringParent)
     {
@@ -55,7 +54,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     /**
      * @return int
      */
-    public function getRecurringOriginal()
+    public function getRecurringOriginal(): int
     {
         return $this->recurringOriginal;
     }
@@ -63,7 +62,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     /**
      * @param int $recurringOriginal
      */
-    public function setRecurringOriginal($recurringOriginal)
+    public function setRecurringOriginal(int $recurringOriginal)
     {
         $this->recurringOriginal = $recurringOriginal;
     }

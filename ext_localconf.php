@@ -4,9 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 // Hook to filter recurring events in the list module
-//$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list_extra.inc']['getTable']['news_recurrsing'] =
-//    'GeorgRinger\\NewsRecurring\\Hooks\\DatabaseRecordList';
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Recordlist\\RecordList\\DatabaseRecordList']['buildQueryParameters'][]
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
     = \GeorgRinger\NewsRecurring\Hooks\RecordListQueryHook::class;
 
 // Xclass Datamapper

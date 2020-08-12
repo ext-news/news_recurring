@@ -8,7 +8,10 @@ namespace GeorgRinger\NewsRecurring\Persistence\Generic\Mapper;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\NewsRecurring\Domain\Model\News;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Extbase\Event\Persistence\AfterObjectThawedEvent;
 
 /**
  * Class DataMapper
@@ -35,18 +38,22 @@ class DataMapper extends \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMappe
         if ($className === News::class) {
             $parentRow = $this->getParentRow($row['recurring_parent']);
 
-            $object = $this->createEmptyObject($className);
-            $this->persistenceSession->registerObject($object, $row['uid']);
-            $parentRow = $this->overlayRow($parentRow, $row);
-            $this->thawProperties($object, $parentRow);
-            $this->emitAfterMappingSingleRow($object);
-            $object->_memorizeCleanState();
-            $this->persistenceSession->registerReconstitutedEntity($object);
+            if ($this->persistenceSession->hasIdentifier($row['uid'], $className)) {
+                $object = $this->persistenceSession->getObjectByIdentifier($row['uid'], $className);
+            } else {
+                $object = $this->createEmptyObject($className);
+                $this->persistenceSession->registerObject($object, $row['uid']);
+                $parentRow = $this->overlayRow($parentRow, $row);
+                $this->thawProperties($object, $parentRow);
+                $event = new AfterObjectThawedEvent($object, $row);
+                $this->eventDispatcher->dispatch($event);
+                $object->_memorizeCleanState();
+                $this->persistenceSession->registerReconstitutedEntity($object);
+            }
 
             return $object;
-        } else {
-            return parent::mapSingleRow($className, $row);
         }
+        return parent::mapSingleRow($className, $row);
     }
 
     /**
@@ -74,6 +81,6 @@ class DataMapper extends \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMappe
      */
     protected function getParentRow($uid)
     {
-        return $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . (int)$uid);
+        return BackendUtility::getRecord('tx_news_domain_model_news', $uid);
     }
 }
