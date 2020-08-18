@@ -16,12 +16,12 @@
 	],
 	"type": "typo3-cms-extension",
 	"description": "Add possibilities for galleries in a news record",
-	"homepage": "http://ringer.it",
+	"homepage": "https://ringer.it",
 	"license": [
 		"GPL-2.0+"
 	],
 	"require": {
-		"georgringer/news": "^8",
+		"georgringer/news": "^8.4",
 		"typo3/cms-core": "^10"
 	},
 	"autoload": {
@@ -32,5 +32,10 @@
 	"replace": {
 		"news_recurring": "self.version",
 		"typo3-ter/news-recurring": "self.version"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "news_recurring"
+		}
 	}
 }
