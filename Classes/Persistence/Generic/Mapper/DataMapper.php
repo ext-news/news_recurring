@@ -11,6 +11,8 @@ namespace GeorgRinger\NewsRecurring\Persistence\Generic\Mapper;
 
 use GeorgRinger\NewsRecurring\Domain\Model\News;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Event\Persistence\AfterObjectThawedEvent;
 
 /**
@@ -67,6 +69,18 @@ class DataMapper extends \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMappe
     {
         foreach ($this->overlaidFields as $fieldName) {
             $parent[$fieldName] = $original[$fieldName];
+        }
+
+        try {
+            $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+            $keptFields = GeneralUtility::trimExplode(',', $extensionConfiguration->get('news_recurring', 'keptFields'), true);
+            if ($keptFields) {
+                foreach ($keptFields as $fieldName) {
+                    $parent[$fieldName] = $original[$fieldName];
+                }
+            }
+        } catch (\Exception $e) {
+            // do nothing
         }
         $parent['recurring_original'] = $original['uid'];
 

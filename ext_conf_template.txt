@@ -1,0 +1,3 @@
+
+# cat=enable/101; type=string; label=List of fields kept from variant
+keptFields =
