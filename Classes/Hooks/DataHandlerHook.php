@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\DataHandling\DataHandler;
 class DataHandlerHook
 {
 
-    protected $copyField = ['categories'];
+    protected $copyField = ['categories', 'sys_language_uid'];
 
     public function processDatamap_beforeStart(DataHandler $dataHandler)
     {
