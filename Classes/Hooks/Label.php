@@ -23,7 +23,7 @@ class Label
      */
     public function getNewsLabel(array &$params)
     {
-        $type = (is_array($params['row']['type'])) ? $params['row']['type'][0] : $params['row']['type'];
+        $type = (\is_array($params['row']['type'])) ? $params['row']['type'][0] : $params['row']['type'];
         if ((int)$type === 7) {
             $date = (int)$params['row']['datetime'] > 0 ? $params['row']['datetime'] : $GLOBALS['EXEC_TIME'];
 
