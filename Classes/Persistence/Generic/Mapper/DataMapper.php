@@ -39,6 +39,9 @@ class DataMapper extends \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMappe
     {
         if ($className === News::class) {
             $parentRow = $this->getParentRow($row['recurring_parent']);
+            if (!$parentRow) {
+                return parent::mapSingleRow($className, $row);
+            }
 
             if ($this->persistenceSession->hasIdentifier($row['uid'], $className)) {
                 $object = $this->persistenceSession->getObjectByIdentifier($row['uid'], $className);
