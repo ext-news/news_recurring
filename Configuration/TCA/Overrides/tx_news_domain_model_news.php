@@ -1,7 +1,6 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
+
+defined('TYPO3_MODE') or die();
 
 $columns = [
     'recurring_parent' => [
@@ -61,7 +60,7 @@ $columns = [
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['config']['items'][] = ['Recurring', 7];
 
 $GLOBALS['TCA']['tx_news_domain_model_news']['types'][7] = [
-    'showitem' => 'l10n_parent, l10n_diffsource,type,datetime'
+    'showitem' => 'l10n_parent,l10n_diffsource,type,datetime'
 ];
 
 $GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['formattedLabel_userFunc'] = \GeorgRinger\NewsRecurring\Hooks\Label::class . '->getNewsLabel';
