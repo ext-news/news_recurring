@@ -1,0 +1,20 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  GeorgRinger\NewsRecurring\:
+    resource: '../Classes/*'
+
+  GeorgRinger\NewsRecurring\EventListener\ModifyDatabaseQueryForRecordListingEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'ext-newsrecurring/modify-database-query-for-list'
+        event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent
+
+  GeorgRinger\NewsRecurring\EventListener\AfterObjectThawedEventEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'ext-newsrecurring/after-object-thawed-event'
+        event: TYPO3\CMS\Extbase\Event\Persistence\AfterObjectThawedEvent
