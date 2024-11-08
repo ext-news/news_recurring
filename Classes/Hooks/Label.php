@@ -12,20 +12,20 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
  */
 
 /**
- * Class Label
+ * Class Label.
  */
 class Label
 {
-
     /**
      * @param array $params
+     *
      * @return void
      */
     public function getNewsLabel(array &$params)
     {
         $type = (is_array($params['row']['type'])) ? $params['row']['type'][0] : $params['row']['type'];
-        if ((int)$type === 7) {
-            $date = (int)$params['row']['datetime'] > 0 ? $params['row']['datetime'] : $GLOBALS['EXEC_TIME'];
+        if ((int) $type === 7) {
+            $date = (int) $params['row']['datetime'] > 0 ? $params['row']['datetime'] : $GLOBALS['EXEC_TIME'];
 
             $params['title'] = BackendUtility::datetime($date);
         } else {
