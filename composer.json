@@ -21,7 +21,7 @@
 		"GPL-2.0+"
 	],
 	"require": {
-		"georgringer/news": "^12",
+		"georgringer/news": "^12 || @dev",
 		"typo3/cms-core": "^12 || ^13"
 	},
 	"autoload": {
