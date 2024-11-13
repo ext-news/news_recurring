@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\NewsRecurring\EventListener;
@@ -10,17 +11,13 @@ use TYPO3\CMS\Extbase\Event\Persistence\AfterObjectThawedEvent;
 
 final class AfterObjectThawedEventEventListener
 {
-
     protected string $fallbackSkippedFields = 'uid,tstamp,crdate,datetime';
-
 
     public function __invoke(AfterObjectThawedEvent $event)
     {
         $object = $event->getObject();
         if ($object instanceof News && $object->getType() === '7') {
-
             $this->overlay($object);
-
         }
     }
 
@@ -31,6 +28,7 @@ final class AfterObjectThawedEventEventListener
         $parent = $news->getRecurringParent();
 
         $skippedFields = $this->fallbackSkippedFields;
+
         try {
             $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
             $keptFields = $extensionConfiguration->get('news_recurring', 'skippedFields');
@@ -52,5 +50,4 @@ final class AfterObjectThawedEventEventListener
         $news->setRecurringParent($parent);
         $news->setRecurringOriginal($original->getUid());
     }
-
 }
