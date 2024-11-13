@@ -25,7 +25,7 @@ class DataHandlerHook
             return;
         }
         foreach ($dataHandler->datamap['tx_news_domain_model_news'] as $id => $singleRecord) {
-            if ((string)$singleRecord['type'] !== '0' || empty($singleRecord['recurring'])) {
+            if ((string)($singleRecord['type'] ?? '') !== '0' || empty($singleRecord['recurring'])) {
                 continue;
             }
 
