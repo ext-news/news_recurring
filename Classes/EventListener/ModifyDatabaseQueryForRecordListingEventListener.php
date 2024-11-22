@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\NewsRecurring\EventListener;
@@ -8,7 +9,6 @@ use TYPO3\CMS\Core\Database\Connection;
 
 final class ModifyDatabaseQueryForRecordListingEventListener
 {
-
     public function __invoke(ModifyDatabaseQueryForRecordListingEvent $event)
     {
         if ($event->getTable() === 'tx_news_domain_model_news') {
