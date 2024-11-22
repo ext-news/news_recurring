@@ -29,6 +29,9 @@ final class AfterObjectThawedEventEventListener
         $original = clone $news;
         /** @var News $parent */
         $parent = $news->getRecurringParent();
+        if ($parent === null) {
+            return;
+        }
 
         $skippedFields = $this->fallbackSkippedFields;
         try {
